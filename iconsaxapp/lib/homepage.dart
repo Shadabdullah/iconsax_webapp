@@ -5,7 +5,7 @@ class IconsaxHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -16,7 +16,10 @@ class IconsaxHomePage extends StatelessWidget {
                 Center(
                   child: Text(
                     "IconsaxApp",
-                    style: Theme.of(context).textTheme.headlineMedium,
+                    style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
                   ),
                 )
               ],

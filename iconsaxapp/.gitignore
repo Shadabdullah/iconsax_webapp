@@ -31,9 +31,9 @@ migrate_working_dir/
 .pub/
 #Exclude web
 # Ignore everything in the build directory
-
 # Except the build/web directory
-!/build/web
+build/*
+!build/web
 
 # Symbolication related
 app.*.symbols
