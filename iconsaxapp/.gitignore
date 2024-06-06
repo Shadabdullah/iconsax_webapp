@@ -31,10 +31,6 @@ migrate_working_dir/
 .pub/
 #Exclude web
 # Ignore everything in the build directory
-/build/**
-
-# Do not ignore the build directory itself, needed to unignore subdirectories
-!/build
 
 # Except the build/web directory
 !/build/web
