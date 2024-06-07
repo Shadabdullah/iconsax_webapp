@@ -9,23 +9,29 @@ class IconsaxView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final iconsmap = iconsaxMap;
-    return Scaffold(
-      backgroundColor: Colors.black38,
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.black,
-        title: const Text(
-          "Iconsax For Flutter ",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-      ),
-      body: Padding(
-          padding: const EdgeInsets.all(10),
-          child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 1,
-                childAspectRatio: 1 / 1),
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          int crossAxisCount;
+
+          if (constraints.maxWidth >= 1200) {
+            // For laptop
+            crossAxisCount = 6;
+          } else if (constraints.maxWidth >= 600) {
+            // For tablet
+            crossAxisCount = 4;
+          } else {
+            // For phone
+            crossAxisCount = 2;
+          }
+
+          return GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              crossAxisSpacing: 1,
+              childAspectRatio: 1 / 1,
+            ),
             itemCount: iconsmap.length,
             itemBuilder: (BuildContext context, int index) {
               String iconName = iconsmap.keys.elementAt(index);
@@ -33,10 +39,15 @@ class IconsaxView extends StatelessWidget {
               return AspectRatio(
                 aspectRatio: 1 / 3,
                 child: IconsContainer(
-                    index: index, iconName: iconName, icon: iconData),
+                  index: index,
+                  iconName: iconName,
+                  icon: iconData,
+                ),
               );
             },
-          )),
+          );
+        },
+      ),
     );
   }
 }
